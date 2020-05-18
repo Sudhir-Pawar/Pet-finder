@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, FunctionComponent, Dispatch } from "react";
 
-function useDropdown(label, defaultValue, options) {
+function useDropdown(label: string, defaultValue: string, options: string[]) {
   const [state, setState] = useState(defaultValue);
   const id = `use-dropdown ${label.replace(" ", "").toLowerCase()}`;
-  const dropdown = () => {
+  const dropdown: FunctionComponent = () => {
     return (
       <label htmlFor={id}>
         {label}
@@ -15,7 +15,7 @@ function useDropdown(label, defaultValue, options) {
           disabled={options.length === 0}
         >
           <option>{defaultValue}</option>
-          {options.map((item, index) => (
+          {options.map((item: string, index: number) => (
             <option key={index} value={item}>
               {item}
             </option>
@@ -24,6 +24,10 @@ function useDropdown(label, defaultValue, options) {
       </label>
     );
   };
-  return [state, dropdown, setState];
+  return [state, dropdown, setState] as [
+    string,
+    FunctionComponent,
+    Dispatch<string>
+  ];
 }
 export default useDropdown;

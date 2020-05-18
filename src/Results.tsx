@@ -1,7 +1,12 @@
-import React from "react";
+import React, { FunctionComponent } from "react";
 import Pet from "./Pet";
+import { Animal } from "@frontendmasters/pet";
 
-function Results({ pets }) {
+interface IProps {
+  pets: Animal[];
+}
+
+const Results: FunctionComponent<IProps> = ({ pets }) => {
   return (
     <div className="search">
       {console.log(pets)}
@@ -17,10 +22,10 @@ function Results({ pets }) {
             media={pet.photos}
             id={pet.id}
             location={`${pet.contact.address.city}, ${pet.contact.address.state}`}
-          ></Pet>
+          />
         ))
       )}
     </div>
   );
-}
+};
 export default Results;
